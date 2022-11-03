@@ -10,7 +10,7 @@ const getAllService = async () => {
 };
 
 const getByIdService = async (id) => {
-  const result = await modelProduct.modelGetById(id);
+  const result = await modelProduct.getByIdModel(id);
 
   if (result) {
     return {
