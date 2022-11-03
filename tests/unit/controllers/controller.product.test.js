@@ -13,7 +13,7 @@ describe("Test controller of the products", () => {
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
 
-      sinon.stub(serviceProduct, "getAllServices").resolves(serviceReturn);
+      sinon.stub(serviceProduct, "getAllService").resolves(serviceReturn);
 
       await controllerProduct.getAllController({}, res);
       expect(res.status.calledWith(200)).to.be.eq(true);
@@ -26,7 +26,7 @@ describe("Test controller of the products", () => {
       const res = {};
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
-      sinon.stub(serviceProduct, "getByIdServices").resolves({ type: null, message: productsMock[0] });
+      sinon.stub(serviceProduct, "getByIdService").resolves({ type: null, message: productsMock[0] });
 
       await controllerProduct.getByIdController(req, res);
       expect(res.status.calledWith(200)).to.be.equal(true);
@@ -39,7 +39,7 @@ describe("Test controller of the products", () => {
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
       sinon
-        .stub(serviceProduct, "getByIdServices")
+        .stub(serviceProduct, "getByIdService")
         .resolves({ type: 'error', message: 'Product not found' });
 
       await controllerProduct.getByIdController(req, res);
