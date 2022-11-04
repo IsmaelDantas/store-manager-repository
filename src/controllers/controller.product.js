@@ -19,8 +19,16 @@ const insertController = async (req, res) => {
   res.status(201).json({ id: message, name });
 };
 
+const deleteController = async (req, res) => {
+  const { id } = req.params;
+  const { type, message } = await serviceProduct.deleteService(id);
+  if (type) return res.status(404).json({ message });
+  res.status(204).json();
+};
+
 module.exports = {
   getAllController,
   getByIdController,
   insertController,
+  deleteController,
 };
