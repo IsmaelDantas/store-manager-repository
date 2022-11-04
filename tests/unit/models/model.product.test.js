@@ -3,7 +3,7 @@ const sinon = require("sinon");
 const modelProduct = require("../../../src/models/model.product");
 const connection = require("../../../src/models/database/connection");
 
-const { productsMock } = require("../mock/mocks");
+const { productsMock, newMockInsert } = require("../mock/mocks");
 const { beforeEach, afterEach } = require("mocha");
 
 describe("Testing model of products", () => {
@@ -24,4 +24,12 @@ describe("Testing model of products", () => {
     });
     afterEach(sinon.restore)
   });
+
+  describe('Insert a new product', () => {
+    it('Test if at insert a new product return id and the same name', async () => {
+      sinon.stub(connection, "execute").resolves([{ insertId: 99 }]);
+      const result = await modelProduct.insertModel(newMockInsert);
+      expect(result).to.be.eq(99);
+    })
+  })
 });
