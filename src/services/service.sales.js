@@ -13,7 +13,14 @@ const getByIdService = async (id) => {
   return { type: 'error', message: 'Sale not found' };
 };
 
+// const insertService = async (array) => {
+//   const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+//   const result = await modelSales.insertModel(array, date);
+//   return { type: null, message: result };
+// };
+
 module.exports = {
   getAllService,
   getByIdService,
+  // insertService,
 };
