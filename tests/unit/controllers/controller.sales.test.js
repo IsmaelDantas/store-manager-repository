@@ -11,7 +11,8 @@ describe('Test sales controller', () => {
       const res = {};
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
-      sinon.stub(serviceSales, "getAllServices").resolves(salesMock);
+      
+      sinon.stub(serviceSales, "getAllService").resolves(salesMock);
       await controllerSales.getAllController({}, res);
       expect(res.status.calledWith(200)).to.be.eq(true);
       expect(res.json.calledWith(salesMock.message)).to.be.eq(true);
