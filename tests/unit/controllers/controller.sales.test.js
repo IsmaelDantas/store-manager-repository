@@ -3,6 +3,7 @@ const sinon = require("sinon");
 const serviceSales = require("../../../src/services/service.sales");
 const controllerSales = require("../../../src/controllers/sales.controller");
 const { salesMock, mockSaleUnit, mockValueUnit } = require("../mock/mocks");
+const { afterEach } = require("mocha");
 
 describe('Test sales controller', () => {
   describe('List all items', () => {
@@ -62,6 +63,12 @@ describe('Test sales controller', () => {
       const req = { body: {} };
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
+      sinon
+        .stub(serviceSales, "insertService")
+        .resolves({ type: 'error', message: 10 });
+      await controllerSales.insertController(req, res);
+      expect(res.status.calledWith(404)).to.be.eq(true);
     });
+    afterEach(sinon.restore);
   });
 });
