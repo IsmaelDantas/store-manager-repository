@@ -63,6 +63,11 @@ const mockSaleUnit = [
   }
 ]
 
+const mockValueUnit = [{
+  productId: 1,
+  quantity: 1,
+}]
+
 module.exports = {
   productsMock,
   serviceReturn,
@@ -70,4 +75,5 @@ module.exports = {
   salesMock,
   mockSaleUnit,
   mockProductsUpdate,
+  mockValueUnit,
 };
