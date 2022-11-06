@@ -39,10 +39,18 @@ const updateModel = async (name, id) => {
   return null;
 };
 
+const queryGetBy = async (name) => {
+  const [result] = await connection.execute(
+    'SELECT * FROM StoreManager.products WHERE (name) LIKE (?)', [name],
+  );
+  return result;
+};
+
 module.exports = {
   getAllModel,
   getByIdModel,
   insertModel,
   deleteModel,
   updateModel,
+  queryGetBy,
 };

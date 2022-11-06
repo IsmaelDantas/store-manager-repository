@@ -45,10 +45,17 @@ const updateService = async (name, id) => {
   return result;
 };
 
+const getByQueryService = async (name) => {
+  const result = await modelProduct.queryGetBy(name);
+  if (!result) return { type: 'error', message: 'Product not found' };
+  return result;
+};
+
 module.exports = {
   getAllService,
   getByIdService,
   insertService,
   deleteService,
   updateService,
+  getByQueryService,
 };

@@ -34,9 +34,18 @@ const deleteSaleService = async (id) => {
   return { type: null, message: result };
 };
 
+const updateSaleService = async (array, id) => {
+  const result = await modelSales.updateSaleModel(array, id);
+  if (!result) {
+    return { type: 'error', message: 'Sale not found' };
+  }
+  return result;
+};
+
 module.exports = {
   getAllService,
   getByIdService,
   insertService,
   deleteSaleService,
+  updateSaleService,
 };

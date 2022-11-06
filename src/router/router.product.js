@@ -12,6 +12,8 @@ routerProduct.post('/', validationName, controllerProduct.insertController);
 
 routerProduct.delete('/:id', controllerProduct.deleteController);
 
+routerProduct.get('/search', controllerProduct.getByQueryController);
+
 module.exports = {
   routerProduct,
 };

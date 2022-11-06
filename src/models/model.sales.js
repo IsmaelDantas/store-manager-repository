@@ -48,10 +48,22 @@ const deleteSaleModel = async (id) => {
   return affectedRows;
 };
 
+const updateSaleModel = async (array, id) => {
+  array.forEach((item) => connection.execute(
+    'UPDATE StoreManager.sales_products SET productId = ? quantity = ? WHERE id = ?',
+    [item.productId, item.quantity, id],
+  ));
+  if (array.length > 0) {
+    return { id, array };
+  }
+  return null;
+};
+
 module.exports = {
   getAllModel,
   getByIdModel,
   insertModelSale,
   insertModel,
   deleteSaleModel,
+  updateSaleModel,
 };

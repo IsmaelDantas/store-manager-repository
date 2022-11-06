@@ -34,10 +34,19 @@ const updateController = async (req, res) => {
   res.status(200).json({ id: result.id, name });
 };
 
+const getByQueryController = async (req, res) => {
+  const { q } = req.query;
+  const name = `%${q}%`;
+  const result = await serviceProduct.getByQueryService(name);
+  if (result.type) return res.status(404).json([]);
+  res.status(200).json(result);
+};
+
 module.exports = {
   getAllController,
   getByIdController,
   insertController,
   deleteController,
   updateController,
+  getByQueryController,
 };
