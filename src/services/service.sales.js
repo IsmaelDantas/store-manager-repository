@@ -7,12 +7,12 @@ const getAllService = async () => {
 };
 
 const getByIdService = async (id) => {
-  const result = await modelProduct.getByIdModel(id);
-  if (result) {
+  const result = await modelSales.getByIdModel(id);
+  if (result.length > 0) {
     return { type: null, message: result };
   }
-  return { type: 'error', message: 'Product not found' };
-};
+  return { type: 'error', message: 'Sale not found' };
+}; 
 
 const insertService = async (array) => {
   const data = array.map((item) => modelProduct.getByIdModel(item.productId));
