@@ -19,6 +19,11 @@ const insertService = async (array) => {
   const result = await Promise.all(data);
   const resultValidate = result.some((item) => item === undefined);
   if (resultValidate) return { type: 'error', message: 'Product not found' };
+  const idSale = await modelSales.insertModel();
+  array.forEach(async ({ productId, quantity }) => {
+    await modelSales.insertModelSale(idSale, productId, quantity);
+  });
+  return { type: null, message: idSale };
 };
 
 module.exports = {
