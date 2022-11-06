@@ -24,30 +24,24 @@ const getByIdModel = async (id) => {
   return result;
 };
 
-// const insertModelSale = async ({ saleId, productId, quantity }) => {
-//   await connection.execute(
-//     'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
-//     [saleId, productId, quantity],
-//   );
-// };
+const insertModelSale = async ({ saleId, productId, quantity }) => {
+  await connection.execute(
+    'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
+    [saleId, productId, quantity],
+  );
+};
 
-// const insertModel = async (array, date) => {
-//   const [result] = await connection.execute(
-//     'INSERT INTO StoreManager.sales (date) VALUES (?)', [date],
-//   );
+const insertModel = async () => {
+  const [{ insertId }] = await connection.execute(
+    'INSERT INTO StoreManager.sales (date) VALUES (?)',
+  );
   
-//   if (result.affectedRows === 1) {
-//     array.forEach((item) => {
-//       insertModelSale({ ...item, saleId: result.insertId });
-//     });
-//     return result.insertId;
-//   }
-
-//   return null;
-// };
+  return insertId;
+};
 
 module.exports = {
   getAllModel,
   getByIdModel,
-  // insertModel,
+  insertModelSale,
+  insertModel,
 };
