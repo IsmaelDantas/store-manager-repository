@@ -35,11 +35,16 @@ const deleteSaleService = async (id) => {
 };
 
 const updateSaleService = async (array, id) => {
-  const result = await modelSales.updateSaleModel(array, id);
-  if (!result) {
-    return { type: 'error', message: 'Sale not found' };
-  }
-  return result;
+  const data = array.map((item) => modelProduct.getByIdModel(item.productId));
+  const result = await Promise.all(data);
+  const validateResult = result.some((item) => item === undefined);
+  if (validateResult) return { type: 'error', message: 'Product not found' };
+  const result2 = await getByIdService(id);
+  if (result2.type) return result2;
+  array.forEach(async (item) => {
+    await modelSales.updateSaleModel(item.quantity, id, item.productId);
+  });
+  return { type: null, message: id };
 };
 
 module.exports = {

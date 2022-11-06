@@ -6,6 +6,8 @@ const { validationProduct, validationQuantity } = require('../middlewares/valida
 
 const routerSales = express.Router();
 
+routerSales.put('/:id', validationQuantity, validationProduct, controllerSales.updateController);
+
 routerSales.get('/', controllerSales.getAllController);
 
 routerSales.get('/:id', controllerSales.getByIdController);
@@ -13,8 +15,6 @@ routerSales.get('/:id', controllerSales.getByIdController);
 routerSales.post('/', validationProduct, validationQuantity, controllerSales.insertController);
 
 routerSales.delete('/:id', controllerSales.deleteSaleController);
-
-routerSales.put('/:id', validationQuantity, validationProduct, controllerSales.updateController);
 
 module.exports = {
   routerSales,

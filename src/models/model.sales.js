@@ -48,15 +48,12 @@ const deleteSaleModel = async (id) => {
   return affectedRows;
 };
 
-const updateSaleModel = async (array, id) => {
-  array.forEach((item) => connection.execute(
-    'UPDATE StoreManager.sales_products SET productId = ? quantity = ? WHERE id = ?',
-    [item.productId, item.quantity, id],
-  ));
-  if (array.length > 0) {
-    return { id, array };
-  }
-  return null;
+const updateSaleModel = async (quantity, id, productId) => {
+  const [{ affectedRows }] = await connection.execute(
+    'UPDATE StoreManager.sales_products SET quantity = ? WHERE sale_id = ? AND product_id = ?',
+    [quantity, id, productId],
+  );
+  return affectedRows;
 };
 
 module.exports = {
