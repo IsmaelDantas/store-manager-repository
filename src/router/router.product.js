@@ -6,13 +6,13 @@ const routerProduct = express.Router();
 
 routerProduct.get('/', controllerProduct.getAllController);
 
+routerProduct.get('/search', controllerProduct.getByQueryController);
+
 routerProduct.get('/:id', controllerProduct.getByIdController);
 
 routerProduct.post('/', validationName, controllerProduct.insertController);
 
 routerProduct.delete('/:id', controllerProduct.deleteController);
-
-routerProduct.get('/search', controllerProduct.getByQueryController);
 
 module.exports = {
   routerProduct,
