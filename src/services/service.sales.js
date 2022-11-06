@@ -7,23 +7,27 @@ const getAllService = async () => {
 };
 
 const getByIdService = async (id) => {
-  const result = await modelSales.getByIdModel(id);
-  if (result.length > 0) {
+  const result = await modelProduct.getByIdModel(id);
+  if (result) {
     return { type: null, message: result };
   }
-  return { type: 'error', message: 'Sale not found' };
+  return { type: 'error', message: 'Product not found' };
 };
 
 const insertService = async (array) => {
   const data = array.map((item) => modelProduct.getByIdModel(item.productId));
   const result = await Promise.all(data);
-  const resultValidate = result.some((item) => item === undefined);
-  if (resultValidate) return { type: 'error', message: 'Product not found' };
-  const idSale = await modelSales.insertModel();
+  const validateResult = result.some((item) => item === undefined);
+
+  if (validateResult) return { type: 'error', message: 'Product not found' };
+
+  const saleId = await modelSales.insertModel();
+
   array.forEach(async ({ productId, quantity }) => {
-    await modelSales.insertModelSale(idSale, productId, quantity);
+    await modelSales.insertModelSale(saleId, productId, quantity);
   });
-  return { type: null, message: idSale };
+
+  return { type: null, message: saleId };
 };
 
 const deleteSaleService = async (id) => {

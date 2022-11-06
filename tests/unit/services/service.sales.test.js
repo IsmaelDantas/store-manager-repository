@@ -14,13 +14,13 @@ describe("Testing service sales", () => {
       expect(result.message).to.be.eq(salesMock);
     });
 
-    it("Should return a product with an ID", async () => {
-      sinon.stub(modelSales, "getByIdModel").resolves(salesMock[0]);
-      const result = await serviceSales.getByIdServices(2);
-      expect(result.message).to.be.eq(salesMock[3]);
+    it("Should return a product when passing an ID", async () => {
+      sinon.stub(modelSales, "getByIdModel").resolves(salesMock);
+      const result = await serviceSales.getByIdService(1);
+      expect(result.type).to.be.eq(null);
     });
 
-    it('Test if inserted a sale', async () => {
+    it('Test if a sale was inserted', async () => {
       sinon.stub(modelSales, 'insertModelSale').resolves(salesMock[0]);
       const result = await serviceSales.insertService(mockValueUnit);
       expect(result.type).to.be.eq(null)

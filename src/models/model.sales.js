@@ -20,24 +20,22 @@ const getByIdModel = async (id) => {
      ON sp.product_id = s.id = ${id}`,
     [id],
   );
-  console.log('model', result);
   return result;
 };
 
-const insertModelSale = async ({ saleId, productId, quantity }) => {
+const insertModelSale = async (saleId, productId, quantity) => {
   await connection.execute(
     'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
     [saleId, productId, quantity],
   );
-
   return null;
 };
 
 const insertModel = async () => {
   const [{ insertId }] = await connection.execute(
-    'INSERT INTO StoreManager.sales (date) VALUES (?)',
+    'INSERT INTO StoreManager.sales VALUES ()',
   );
-  
+
   return insertId;
 };
 

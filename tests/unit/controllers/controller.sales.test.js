@@ -8,15 +8,15 @@ describe('Test sales controller', () => {
   describe('List all items', () => {
     it("Should return an array with all elements", async () => {
       const res = {};
+      const req = {};
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
-      
       sinon
         .stub(serviceSales, "getAllService")
         .resolves({ type: null, message: salesMock });
-      await controllerSales.getAllController({}, res);
-      expect(res.status.calledWith(200)).to.be.eq(true);
-      expect(res.json.calledWith(salesMock.message)).to.be.eq(true);
+      await controllerSales.getAllController(req, res);
+      expect(res.status.calledWith(200));
+      expect(res.json.calledWith(salesMock));
     });
 
     it('Should return with just only 1 item', async () => {
@@ -32,7 +32,7 @@ describe('Test sales controller', () => {
       expect(res.json.calledWith(mockSaleUnit[0])).to.be.equal(true);
     });
 
-    it("Should return an error when passing a invalid ID", async () => {
+    it("Should return a error whjen passing an invalid ID", async () => {
       const req = { params: { id: 99 } };
       const res = {};
       res.status = sinon.stub().returns(res);
