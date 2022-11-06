@@ -41,7 +41,6 @@ describe('Test sales controller', () => {
       sinon
         .stub(serviceSales, "getByIdService")
         .resolves({ type: "error", message: "Sale not found" });
-
       await controllerSales.getByIdController(req, res);
 
       expect(res.status.calledWith(404)).to.be.equal(true);

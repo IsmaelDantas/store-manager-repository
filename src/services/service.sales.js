@@ -18,15 +18,11 @@ const insertService = async (array) => {
   const data = array.map((item) => modelProduct.getByIdModel(item.productId));
   const result = await Promise.all(data);
   const validateResult = result.some((item) => item === undefined);
-
   if (validateResult) return { type: 'error', message: 'Product not found' };
-
   const saleId = await modelSales.insertModel();
-
   array.forEach(async ({ productId, quantity }) => {
     await modelSales.insertModelSale(saleId, productId, quantity);
   });
-
   return { type: null, message: saleId };
 };
 

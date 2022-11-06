@@ -15,7 +15,7 @@ const getByIdController = async (req, res) => {
 const insertController = async (req, res) => {
   const array = req.body;
   const { type, message } = await serviceSales.insertService(array);
-  if (type) return res.status(404).json({ message: 'Product not found' });
+  if (type) return res.status(404).json({ message });
   return res.status(201).json({ id: message, itemsSold: array });
 };
 
