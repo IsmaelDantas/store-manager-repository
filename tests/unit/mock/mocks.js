@@ -47,6 +47,7 @@ const salesMock = [
     quantity: 10,
     date: "2022-10-12T13:32:57.000Z",
   },
+  
   {
     saleId: 2,
     productId: 3,
@@ -60,13 +61,15 @@ const mockSaleUnit = [
     "productId": 2,
     "quantity": 10,
     "date": "2022-10-12T13:32:57.000Z"
-  }
-]
+  },
+];
 
-const mockValueUnit = [{
-  productId: 1,
-  quantity: 1,
-}]
+const mockValueUnit = [
+  {
+    productId: 1,
+    quantity: 1,
+  },
+];
 
 module.exports = {
   productsMock,

@@ -12,6 +12,8 @@ routerSales.get('/:id', controllerSales.getByIdController);
 
 routerSales.post('/', validationProduct, validationQuantity, controllerSales.insertController);
 
+routerSales.delete('/:id', controllerSales.deleteSaleController);
+
 module.exports = {
   routerSales,
 };
