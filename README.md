@@ -1,7 +1,7 @@
 # Store-Manager (Node.js)
 
 ## Description
-With the **Store Manager** project, we developed a **CRUD** (Create, Read, Update, Delete) API to manage a store's with products and its sales. With that, we structured a **RESTful API** according to the **MSC** (Model, Service and Controller) architecture, and linked with the store's database with security and stability.
+With the **Store Manager** project, i developed a **CRUD** (Create, Read, Update, Delete) API to manage a store's with products and its sales. With that, we structured a **RESTful API** according to the **MSC** (Model, Service and Controller) architecture, and linked with the store's database with security and stability.
 
 The project has management routes made with **Node.JS** and **Express.js** to handle **MySQL** tables at the same time. The project have high coverage of tests done with **Mocha**, **Chai** and **Sinon** to ensure the code quality and its functionality.
 
